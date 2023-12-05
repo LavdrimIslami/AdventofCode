@@ -1,14 +1,35 @@
 // AdventofCode.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
+/*
+GIT GUIDE
+cd C:\Users\LM728\source\repos\AdventofCode\
+git fetch
+git pull origin main
+git remote -v
+git branch -a
+git checkout main
+git add .
+git commit -m "Your commit message here"
+git push origin main
+*/
 #include <iostream>
-
+#include <fstream>
+#include <string>
 int main()
 {
-    std::cout << "Hello World!\n";
-    int x = 1;
-    int y = 2;
-    std::cout << x + y;
+    std::ifstream myfile; myfile.open("D1Sampletext.txt");
+
+    std::string mystring;
+
+    if (myfile.is_open()) {
+        while (getline(myfile, mystring)) {
+            std::cout << mystring << std::endl;
+        }
+        myfile.close();
+    }
+    else {
+        std::cout << "cant open sry" << std::endl;
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
