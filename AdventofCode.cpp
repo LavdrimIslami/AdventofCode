@@ -1,20 +1,12 @@
 // AdventofCode.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-/*
-GIT GUIDE
-cd C:\Users\LM728\source\repos\AdventofCode\
-git fetch
-git pull origin main
-git remote -v
-git branch -a
-git checkout main
-git add .
-git commit -m "Your commit message here"
-git push origin main
-*/
+
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <string>
+#include <cctype>
+#include <algorithm>
 int main()
 {
     std::ifstream myfile; myfile.open("D1Sampletext.txt");
@@ -23,22 +15,37 @@ int main()
 
     if (myfile.is_open()) {
         while (getline(myfile, mystring)) {
-            std::cout << mystring << std::endl;
+            if (!mystring.empty()) {
+                std::string numericPart;
+                for (char ch : mystring) {
+                    if (isdigit(ch)) {
+                        numericPart += ch;
+                    }
+                }
+                if (!numericPart.empty()) {
+                    if (numericPart.size() >= 2) {
+                        char firstchar = mystring.front();
+                        char lastchar = mystring.back();
+                        //std::cout << numericPart << std::endl;
+                        char overTwo = firstchar + lastchar;
+                        int newOverTwo = static_cast<int>(overTwo);
+                        std::cout << newOverTwo << std::endl;
+                    }
+                    else {
+                        char newfirstchar = mystring.front();
+                        char newqwer = newfirstchar + newfirstchar;
+                        int realqwer = static_cast<int>(newqwer);
+                        std::cout << realqwer << std::endl;
+                    }
+                }
+            }
         }
         myfile.close();
     }
     else {
         std::cout << "cant open sry" << std::endl;
     }
+    return 0;
+
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
